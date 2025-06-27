@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  user
+  admin
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(user)
+  createdAt DateTime @default(now())
+  orders    Order[]
+}
+
+model Product {
+  id            Int             @id @default(autoincrement())
+  name          String
+  brand         String
+  price         Float
+  originalPrice Float
+  image         String
+  category      String
+  description   String
+  notes         String[]        // Almacena múltiples valores (array de strings)
+  size          String
+  inStock       Boolean
+  rating        Float
+  reviews       Int
+  createdAt     DateTime        @default(now())
+
+  orders        OrderProduct[]  // Relación con tabla pivote
+}
+
+model Order {
+  id         Int             @id @default(autoincrement())
+  userId     Int
+  user       User            @relation(fields: [userId], references: [id])
+  status     String
+  totalPrice Float
+  createdAt  DateTime        @default(now())
+  products   OrderProduct[]  // Relación muchos a muchos con Product
+}
+
+model OrderProduct {
+  orderId    Int
+  productId  Int
+  quantity   Int
+  unitPrice  Float
+
+  order      Order   @relation(fields: [orderId], references: [id])
+  product    Product @relation(fields: [productId], references: [id])
+
+  @@id([orderId, productId])  // Clave primaria compuesta
+}

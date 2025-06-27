@@ -1,0 +1,73 @@
+[
+  
+  {
+    "name": "Elegance Noir",
+    "brand": "Luxe Paris",
+    "price": 1299,
+    "originalPrice": 1599,
+    "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400",
+    "category": "Femenino",
+    "description": "Una fragancia sofisticada con notas de bergamota, rosa y vainilla. Perfecta para ocasiones especiales.",
+    "notes": ["Bergamota", "Rosa", "Vainilla", "Sándalo"],
+    "size": "100ml",
+    "inStock": true,
+    "rating": 4.8,
+    "reviews": 124
+  },
+  {
+    "name": "Ocean Breeze",
+    "brand": "Aqua Essence",
+    "price": 899,
+    "originalPrice": 1199,
+    "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400",
+    "category": "Masculino",
+    "description": "Frescura marina con toques cítricos. Ideal para el día a día y climas cálidos.",
+    "notes": ["Limón", "Menta", "Cedro", "Almizcle"],
+    "size": "75ml",
+    "inStock": true,
+    "rating": 4.6,
+    "reviews": 89
+  },
+  {
+    "name": "Rose Garden",
+    "brand": "Floral Dreams",
+    "price": 1599,
+    "originalPrice": 1999,
+    "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400",
+    "category": "Femenino",
+    "description": "Delicada composición floral con rosa damascena y peonía. Romántica y elegante.",
+    "notes": ["Rosa Damascena", "Peonía", "Jazmín", "Almizcle Blanco"],
+    "size": "50ml",
+    "inStock": false,
+    "rating": 4.9,
+    "reviews": 156
+  },
+  {
+    "name": "Midnight Oud",
+    "brand": "Arabian Nights",
+    "price": 2299,
+    "originalPrice": 2799,
+    "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400",
+    "category": "Unisex",
+    "description": "Intenso y misterioso con oud auténtico. Para quienes buscan una fragancia única.",
+    "notes": ["Oud", "Ámbar", "Especias", "Cuero"],
+    "size": "100ml",
+    "inStock": true,
+    "rating": 4.7,
+    "reviews": 67
+  },
+  {
+    "name": "Citrus Burst",
+    "brand": "Fresh Start",
+    "price": 699,
+    "originalPrice": 899,
+    "image": "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400",
+    "category": "Unisex",
+    "description": "Explosión de cítricos frescos. Energizante y revitalizante para cualquier momento.",
+    "notes": ["Naranja", "Pomelo", "Limón Verde", "Jengibre"],
+    "size": "75ml",
+    "inStock": true,
+    "rating": 4.4,
+    "reviews": 203
+  }
+]
