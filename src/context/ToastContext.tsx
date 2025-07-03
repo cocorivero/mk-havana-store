@@ -23,7 +23,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     setToasts((prev) => [...prev, newToast]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 2000);
+    }, 3000);
   }, []);
 
   return (
@@ -39,7 +39,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
                 ? "bg-red-500"
                 : toast.type === "info"
                 ? "bg-blue-500"
-                : "bg-pink-500"
+                : "bg-green-500"
             }`}
           >
             {toast.message}

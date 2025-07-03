@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Perfume } from "@/types/perfume";
 import PerfumeHero from "./PerfumeHero";
 import PerfumeFilters from "./PerfumeFilters";
@@ -49,20 +48,7 @@ const HomeContainer = ({ data }: Props) => {
   return (
     <div className="min-h-screen bg-pink-50">
       <main>
-        <AnimatePresence>
-          {!searchTerm.trim() && (
-            <motion.div
-              key="perfume-hero"
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -100 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="-mt-16 z-0 relative"
-            >
-              <PerfumeHero />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <PerfumeHero searchTerm={searchTerm} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <PerfumeFilters
