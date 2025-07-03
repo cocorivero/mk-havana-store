@@ -1,5 +1,20 @@
-import { prisma } from '@/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+
+// GET → Obtener producto por ID
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
+  const { id } = context.params;
+
+  const product = await prisma.product.findUnique({
+    where: { id: Number(id) },
+  });
+
+  if (!product) {
+    return NextResponse.json({ message: "Producto no encontrado" }, { status: 404 });
+  }
+
+  return NextResponse.json(product);
+}
 
 // PATCH → Actualizar producto por ID
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
@@ -19,8 +34,8 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       size: body.size,
       inStock: body.inStock,
       rating: body.rating,
-      reviews: body.reviews
-    }
+      reviews: body.reviews,
+    },
   });
 
   return NextResponse.json(updated);
@@ -29,8 +44,8 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 // DELETE → Eliminar producto por ID
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   const deleted = await prisma.product.delete({
-    where: { id: Number(params.id) }
+    where: { id: Number(params.id) },
   });
 
-  return NextResponse.json({ message: 'Producto eliminado', deleted });
+  return NextResponse.json({ message: "Producto eliminado", deleted });
 }

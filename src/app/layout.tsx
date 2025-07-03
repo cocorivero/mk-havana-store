@@ -2,22 +2,25 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import PerfumeHeader from "@/components/Header";
-import { SearchProvider } from '@/context/SearchContext';
+import CartWrapper from "@/components/CartWrapper";
+import { AppProviders } from "./providers";
 
 export const metadata: Metadata = {
   title: "MK Havana",
   description: "Perfume store built with Next.js",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, modal }: { children: React.ReactNode; modal?: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <SearchProvider>
+        <AppProviders>
           <PerfumeHeader />
+          <CartWrapper />
           {children}
+          {modal}
           <Footer />
-        </SearchProvider>
+        </AppProviders>
       </body>
     </html>
   );

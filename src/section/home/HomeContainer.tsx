@@ -7,6 +7,7 @@ import PerfumeHero from "./PerfumeHero";
 import PerfumeFilters from "./PerfumeFilters";
 import PerfumeCard from "./PerfumeCard";
 import { useSearch } from "@/context/SearchContext";
+import PerfumeDetail from "./PerfumeDetail";
 
 interface Props {
   data: Perfume[];
@@ -17,6 +18,8 @@ const HomeContainer = ({ data }: Props) => {
   const [selectedBrand, setSelectedBrand] = useState("Todas");
   const [priceRange, setPriceRange] = useState(3000);
   const { searchTerm } = useSearch();
+
+  const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null);
 
   const categories = useMemo(() => ["Todas", ...Array.from(new Set(data.map((p) => p.category)))], [data]);
   const brands = useMemo(() => ["Todas", ...Array.from(new Set(data.map((p) => p.brand)))], [data]);
@@ -86,7 +89,7 @@ const HomeContainer = ({ data }: Props) => {
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredPerfumes.map((perfume) => (
-              <PerfumeCard key={perfume.id} perfume={perfume} />
+              <PerfumeCard key={perfume.id} perfume={perfume} onViewDetails={setSelectedPerfume} />
             ))}
           </div>
 
@@ -111,6 +114,8 @@ const HomeContainer = ({ data }: Props) => {
           )}
         </div>
       </main>
+
+      {selectedPerfume && <PerfumeDetail perfume={selectedPerfume} onClose={() => setSelectedPerfume(null)} />}
     </div>
   );
 };

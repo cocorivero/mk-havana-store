@@ -1,14 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import { Perfume } from "@/types/perfume";
+import { useAddToCartHandler } from "@/utils/addToCart";
 
 type PerfumeCardProps = {
   perfume: Perfume;
-  onAddToCart?: (perfume: Perfume) => void;
   onViewDetails?: (perfume: Perfume) => void;
 };
 
-const PerfumeCard: React.FC<PerfumeCardProps> = ({ perfume, onAddToCart, onViewDetails }) => {
+const PerfumeCard: React.FC<PerfumeCardProps> = ({ perfume, onViewDetails }) => {
+  const addToCart = useAddToCartHandler();
   const discount = Math.round(((perfume.originalPrice - perfume.price) / perfume.originalPrice) * 100);
 
   return (
@@ -75,7 +76,7 @@ const PerfumeCard: React.FC<PerfumeCardProps> = ({ perfume, onAddToCart, onViewD
             Detalles
           </button>
           <button
-            onClick={() => onAddToCart?.(perfume)}
+            onClick={() => addToCart(perfume)}
             disabled={!perfume.inStock}
             className={`flex-1 py-1 px-2 rounded-md text-sm font-medium transition-colors ${
               perfume.inStock
