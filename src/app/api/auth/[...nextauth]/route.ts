@@ -5,7 +5,7 @@ import { compare } from "bcrypt";
 
 import type { Session, User } from "next-auth";
 import type { JWT } from "next-auth/jwt";
-import { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,16 +16,27 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (!credentials?.email || !credentials?.password) {
+          console.log("Faltan credenciales");
+          return null;
+        }
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
 
-        if (!user) return null;
+        if (!user) {
+          console.log("Usuario no encontrado");
+          return null;
+        }
 
         const isValid = await compare(credentials.password, user.password);
-        if (!isValid) return null;
+        if (!isValid) {
+          console.log("Contraseña incorrecta");
+          return null;
+        }
+
+        console.log("Login exitoso:", user.email);
 
         return {
           id: user.id.toString(),

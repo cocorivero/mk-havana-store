@@ -11,7 +11,7 @@ async function main() {
     create: {
       name: "Admin",
       email: "admin@example.com",
-      password: "admin123", // Más adelante: bcrypt
+      password: "admin123",
       role: "admin",
     },
   });
